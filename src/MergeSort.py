@@ -30,4 +30,3 @@ def MergeSort(mas):
 
     return merge(left, right)
 
-print(MergeSort([12, 4, 1212, 40, 21, 43, 0]))
