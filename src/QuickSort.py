@@ -16,6 +16,3 @@ def QuickSort(mas, l, r):
     if (i < r):
         QuickSort(mas, i, r)
     return mas
-print(QuickSort([212, 2, 112, 0, 50], 0, 4))
-
-    
