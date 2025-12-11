@@ -23,4 +23,3 @@ def HeapSort(mas):
 
     return mas
 
-print(HeapSort([21, 1, 678, 12, 0, 18, 19]))
