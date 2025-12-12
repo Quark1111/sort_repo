@@ -1,4 +1,4 @@
-from Sort.HeapSort import HeapSort
+from src.HeapSort import HeapSort
 import pytest
 
 @pytest.mark.parametrize(
@@ -14,3 +14,4 @@ import pytest
 
 def TestHeapSort(Input, Output):
     assert HeapSort(input) == output
+
