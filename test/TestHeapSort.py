@@ -13,5 +13,6 @@ import pytest
 )
 
 def TestHeapSort(Input, Output):
-    assert HeapSort(input) == output
+    assert HeapSort(Input) == Output
+
 
