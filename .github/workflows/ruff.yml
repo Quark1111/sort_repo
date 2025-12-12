@@ -23,4 +23,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest
     - name: Run tests
-      run: pytest || echo "No tests found"
+      run: |
+        if find . -name "*test*.py" -type f | grep -q "."; then
+          echo "Tests found, running pytest..."
+          pytest -v
+        else
+          echo "No tests found"
+        fi
