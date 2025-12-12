@@ -22,29 +22,24 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pytest
-    - name: Run tests with custom pattern
+    - name: Create pytest.ini with correct configuration
       run: |
-        export PYTHONPATH=./src:$PYTHONPATH
-        
-        # Способ 1: Использовать pythonpath
-        echo "=== Method 1: Using pythonpath ==="
-        python -m pytest test/ -v --pythonpath ./src
-        
-        echo ""
-        echo "=== Method 2: Explicit file pattern ==="
-        # Явно указываем файлы для тестирования
-        pytest test/Test*.py -v
-        
-        echo ""
-        echo "=== Method 3: Configure pytest to find Test*.py ==="
-        # Создаем конфигурацию pytest
-        echo "[tool:pytest]
+        # Создаем конфигурационный файл для pytest
+        cat > pytest.ini << EOF
+        [pytest]
         testpaths = test
         python_files = Test*.py
         python_classes = Test*
         python_functions = test_*
-        addopts = -v" > pytest.ini
+        addopts = -v
+        EOF
         
+        echo "Created pytest.ini:"
         cat pytest.ini
+    - name: Run tests with pytest.ini
+      run: |
+        export PYTHONPATH=./src:$PYTHONPATH
+        echo "PYTHONPATH: $PYTHONPATH"
         echo ""
-        pytest -c pytest.ini
+        echo "Running tests with pytest.ini configuration..."
+        pytest
