@@ -13,6 +13,7 @@ import pytest
 )
 
 def TestQuickSort(Input, Output):
-    assert QuickSort(input, 0, len(input) - 1) == output
+    assert QuickSort(Input, 0, len(Input) - 1) == Output
+
 
 
