@@ -12,7 +12,8 @@ import pytest
     ]
 )
 
-def TestBubbleSort(Input, Output):
-    assert BubbleSort(Input) == Output
+def test_bubble_sort(input, output):
+    assert BubbleSort(input) == output
+
 
 
