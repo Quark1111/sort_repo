@@ -1,4 +1,4 @@
-from Sort.MergeSort import MergeSort
+from src.MergeSort import MergeSort
 import pytest
 
 @pytest.mark.parametrize(
@@ -14,3 +14,4 @@ import pytest
 
 def TestMergeSort(Input, Output):
     assert MergeSort(input) == output
+
