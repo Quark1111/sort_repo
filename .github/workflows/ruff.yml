@@ -24,7 +24,7 @@ jobs:
         pip install pytest
     - name: Run tests
       run: |
-        if find . -name "*test*.py" -type f | grep -q "."; then
+        if find . -name "*Test*.py" -type f | grep -q "."; then
           echo "Tests found, running pytest..."
           pytest -v
         else
