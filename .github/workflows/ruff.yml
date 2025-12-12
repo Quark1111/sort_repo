@@ -27,31 +27,19 @@ jobs:
         echo "=== Project structure ==="
         find . -name "*.py" | sort
         echo ""
-        echo "=== Test files content ==="
-        find . -name "*Test*.py" -exec echo "=== {} ===" \; -head -n 5 {}
+        echo "=== Test files found ==="
+        find . -name "*Test*.py" -type f
+        echo ""
+        echo "=== First few lines of each test file ==="
+        for test_file in $(find . -name "*Test*.py" -type f); do
+          echo "=== $test_file ==="
+          head -n 10 "$test_file"
+          echo ""
+        done
     - name: Run tests
       run: |
-        # Показываем, что находит find
-        echo "Looking for test files:"
-        find . -name "*Test*.py" -type f
+        echo "Running pytest on test directory..."
+        pwd
+        ls -la
         
-        # Запускаем pytest с диагностикой
-        echo ""
-        echo "Running pytest with collection debug:"
-        pytest --collect-only
-        
-        echo ""
-        echo "Running actual tests:"
-        pytest -v test/ || exit_code=$?
-        
-        if [ ${exit_code:-0} -eq 5 ]; then
-          echo "WARNING: No tests were collected"
-          echo "Checking test functions..."
-          # Проверяем, есть ли функции test_ в файлах
-          for test_file in test/*.py; do
-            echo "Checking $test_file:"
-            grep -n "def test_" "$test_file" || echo "  No test functions found"
-          done
-        elif [ ${exit_code:-0} -ne 0 ]; then
-          exit ${exit_code}
-        fi
+        PYTHONPATH=./src:$PYTHONPATH pytest test/ -v
