@@ -11,8 +11,5 @@ import pytest
         ([3, -1, 4, -2, 5], [-2, -1, 3, 4, 5])
     ]
 )
-
-def TestHeapSort(Input, Output):
-    assert HeapSort(Input) == Output
-
-
+def test_heap_sort(input, output):
+    assert HeapSort(input) == output
