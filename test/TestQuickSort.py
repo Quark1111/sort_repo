@@ -1,4 +1,4 @@
-from Sort.QuickSort import QuickSort
+from src.QuickSort import QuickSort
 import pytest
 
 @pytest.mark.parametrize(
@@ -14,4 +14,5 @@ import pytest
 
 def TestQuickSort(Input, Output):
     assert QuickSort(input, 0, len(input) - 1) == output
+
 
