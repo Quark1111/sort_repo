@@ -12,7 +12,8 @@ import pytest
     ]
 )
 
-def TestMergeSort(Input, Output):
-    assert MergeSort(Input) == Output
+def test_merge_sort(input, output):
+    assert MergeSort(input) == output
+
 
 
